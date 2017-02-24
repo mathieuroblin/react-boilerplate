@@ -1,6 +1,6 @@
-function commentsReducer (state = [], action) => {
+const comments = (state = [], action) => {
   console.log(state, action)
   return state
 }
 
-export default commentsReducer
+export default comments
