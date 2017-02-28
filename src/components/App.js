@@ -12,10 +12,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actionCreators, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators(actionCreators, dispatch)
+// }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(Main)
+const App = connect(mapStateToProps)(Main)
 
 export default App
+
+// TO DO
+// Retirer le mapDispatchToProps et le mettre dans chacun des composants
+// Pas logique d'avoir tous les dispatch dans tous les elements
