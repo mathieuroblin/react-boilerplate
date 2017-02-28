@@ -16,7 +16,8 @@ const Players = (props) => {
         <input id="input-name"></input>
         <button onClick={ (event) => {
                             props.onAddPlayer(document.getElementById('input-name').value)}}>
-          Add a player</button>
+                Add a player
+        </button>
       </div>
 
     </div>
