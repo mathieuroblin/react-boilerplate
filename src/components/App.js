@@ -6,10 +6,7 @@ import * as actionCreators from '../actions/actionCreators'
 import Main from './Main'
 
 const mapStateToProps = (store) => {
-  console.log("state -> " + JSON.stringify(store))
   return {
-    // posts: state.posts,
-    // comments: state.comments
     state: store.state
   }
 }
