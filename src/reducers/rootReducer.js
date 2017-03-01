@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import players from './playersReducer'
+import state from './stateReducer'
 
-const rootReducer = combineReducers({ players,
+const rootReducer = combineReducers({ state,
                                       routing: routerReducer })
 
 export default rootReducer;
