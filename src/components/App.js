@@ -6,7 +6,7 @@ import store from '../store'
 
 import { Router, Route, IndexRoute } from 'react-router'
 
-import AppReplacement from './AppReplacement'
+import StateToProps from './StateToProps'
 import Players from './Players'
 import Leaderboard from './Leaderboard'
 import { history } from '../store'
@@ -18,7 +18,7 @@ const App = (props) => {
     <Provider store={ store }>
       {/* <AppRouter /> */}
       <Router history={ history }>
-        <Route path='/' component={ AppReplacement }>
+        <Route path='/' component={ StateToProps }>
           <IndexRoute component={ Players } />
           <Route path='leaderboard' component={ Leaderboard } />
         </Route>

@@ -12,7 +12,7 @@ const test = (players) => {
 const Players = (props) => {
   return (
     <div>
-      <h1>Players mmnbmbn</h1>
+      <h1>Players</h1>
       <div>{ test(props.state) }</div>
       <div>
         <input id="input-name"></input>
