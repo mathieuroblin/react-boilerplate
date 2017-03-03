@@ -6,7 +6,6 @@ const state = (state = List(), { type, name }) => {
       // console.log("state -> " + state)
       // console.log("type -> " + type + " / name -> " + name)
       return state.push(name)
-      break;
     default:
       return state
   }

@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import { addPlayer } from "../actions/actionCreators"
 
 const test = (players) => {
-  let playersTable = null
   if (players) {
     // console.log("players -> " + players)
     return players.map( (player) => (<div>Test</div>) )
@@ -14,7 +12,7 @@ const test = (players) => {
 const Players = (props) => {
   return (
     <div>
-      <h1>Players</h1>
+      <h1>Players mmnbmbn</h1>
       <div>{ test(props.state) }</div>
       <div>
         <input id="input-name"></input>

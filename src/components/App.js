@@ -1,24 +1,30 @@
-// import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React from 'react'
+import { Provider } from 'react-redux'
 
-import * as actionCreators from '../actions/actionCreators'
+// import AppRouter from './AppRouter'
+import store from '../store'
 
-import Main from './Main'
+import { Router, Route, IndexRoute } from 'react-router'
 
-const mapStateToProps = (store) => {
-  return {
-    state: store.state
-  }
+import AppReplacement from './AppReplacement'
+import Players from './Players'
+import Leaderboard from './Leaderboard'
+import { history } from '../store'
+
+
+
+const App = (props) => {
+  return (
+    <Provider store={ store }>
+      {/* <AppRouter /> */}
+      <Router history={ history }>
+        <Route path='/' component={ AppReplacement }>
+          <IndexRoute component={ Players } />
+          <Route path='leaderboard' component={ Leaderboard } />
+        </Route>
+      </Router>
+    </Provider>
+  )
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators(actionCreators, dispatch)
-// }
-
-const App = connect(mapStateToProps)(Main)
-
 export default App
-
-// TO DO
-// Retirer le mapDispatchToProps et le mettre dans chacun des composants
-// Pas logique d'avoir tous les dispatch dans tous les elements
