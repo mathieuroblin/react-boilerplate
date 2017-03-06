@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { addPlayer } from "../actions/actionCreators"
+import { addPlayer, editInput } from "../actions/actionCreators"
 
 const test = (players) => {
   if (players) {
-    // console.log("players -> " + players)
     return players.map( (player) => (<div>Test</div>) )
   }
 }
@@ -13,11 +12,15 @@ const Players = (props) => {
   return (
     <div>
       <h1>Players</h1>
-      <div>{ test(props.state) }</div>
+      {/* <div>{ test(props.state) }</div> */}
       <div>
-        <input id="input-name"></input>
+        <input id="input-name"
+               onChange={ (event) => {
+                 props.dispatch(editInput(["ui", "input-player"], event.target.value))
+               }}/>
         <button onClick={ (event) => {
-                            props.dispatch(addPlayer(document.getElementById('input-name').value))}}>
+                  props.dispatch(addPlayer(props.state.getIn(["ui", "input-player"])))
+                }}>
                 Add a player
         </button>
       </div>
@@ -26,13 +29,3 @@ const Players = (props) => {
 }
 
 export default Players
-
-// const mapDispatchToProps = (dispatch, state) => {
-//   return {
-//     onAddPlayer: (name) => {
-//       dispatch(addPlayer(name))
-//     }
-//   }
-// }
-//
-// export default connect(null, mapDispatchToProps)(Players)
