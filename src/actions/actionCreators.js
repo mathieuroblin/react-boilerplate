@@ -14,3 +14,10 @@ export function editInput(path, value) {
     value
   }
 }
+
+export const ACTION_ADD_SECTION = 'ADD_SECTION'
+export function addSection() {
+  return {
+    type: ACTION_ADD_SECTION
+  }
+}
