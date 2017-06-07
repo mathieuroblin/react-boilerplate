@@ -1,40 +1,45 @@
 import { Map, List } from 'immutable'
 
 import {
-  ACTION_ADD_PLAYER,
-  ACTION_EDIT_INPUT
+  ACTION_INCREMENT_COUNTER,
+  ACTION_EDIT_INPUT_IN,
+  ACTION_ADD_USER
 } from '../actions/actionCreators'
 
-const addPlayer = (action) => (state) => {
-  const players = state.getIn(["data", "players"], List())
-  return state.setIn(["data", "players"], players.push(action.name))
-}
-
-const editInput = (action) => (state) => {
-  return state.setIn(action.path, action.value)
-}
+// UTILS
 
 const applyFn = (state, fn) => fn(state)
 
 const pipe = (fns, state) =>
   state.withMutations(s => fns.reduce(applyFn, s))
 
-const state = (state = Map(), action) => {
-  switch (action.type) {
+// MUTATIONS
 
-    case ACTION_ADD_PLAYER:
-      return pipe([
-        addPlayer(action),
-      ], state)
-
-    case ACTION_EDIT_INPUT:
-      return pipe([
-        editInput(action),
-      ], state)
-
-    default:
-      return state
-  }
+const incrementCounter = () => (state) => {
+  const counter = state.getIn(["counter"], 0)
+  return state.setIn(["counter"], counter + 1)
 }
 
-export default state
+const editInputIn = (path, value) => (state) => {
+  return state.setIn(path, value)
+}
+
+const addUser = (path, username) => (state) => {
+  const users = state.getIn(path, List())
+  return state.setIn(path, users.push(username))
+}
+
+// REDUCER
+
+const stateReducer = (state = Map(), action) => {
+    const reducer = {
+        [ACTION_INCREMENT_COUNTER]: () => [incrementCounter()],
+        [ACTION_EDIT_INPUT_IN]: () => [editInputIn(action.path, action.value)],
+        [ACTION_ADD_USER]: () => [addUser(action.path, action.username),
+                                  editInputIn(["username"], "")],
+        DEFAULT: () => state
+    };
+    return reducer[action.type] ? pipe([...reducer[action.type]()], state) : reducer.DEFAULT();
+};
+
+export default stateReducer;

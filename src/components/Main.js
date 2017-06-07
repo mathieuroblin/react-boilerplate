@@ -10,13 +10,7 @@ const Main = (props) => {
     <div className="App">
       <div className="App-header">
         <img src={ logo } className="App-logo" alt="logo" />
-        <h2>Welcome to the Leaderboard</h2>
-        <button>
-          <Link to="/">Players</Link>
-        </button>
-        <button>
-          <Link to="/leaderboard">Leaderboard</Link>
-        </button>
+        <h2>Subtitle</h2>
       </div>
       { React.cloneElement(props.children, props) }
     </div>
